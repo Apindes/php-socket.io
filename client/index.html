@@ -2,19 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
   </head>
   <body>
       <script
          src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
       <script>
-const socket = io(
-  window.location.protocol + '//' + window.location.hostname + ':5000'
-);
+        const socket = io(
+          window.location.protocol + '//' + window.location.hostname + ':5000'
+        );
         socket.on(
           'eustatosRoom',
           function(message) {
             console.log(JSON.parse(message));
+            var msg = JSON.parse(message);
+            var body = document.getElementsByTagName("body")[0];
+            var div = document.createElement('div');
+            div.innerHTML = "<div class=\"msg\"><span>"+msg.test+"</span></div>";
+            body.append(div);
           }
         );
       </script>

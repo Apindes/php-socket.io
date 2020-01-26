@@ -14,9 +14,13 @@ services:
       - ./www:/www
   redis:
     image: redis
-    command: ["sh", "-c", "exec redis-server --requirepass \"${REDIS_PASSWORD}\""]
+    command: ["sh", "-c", "exec redis-server --requirepass \"eustatos\""]
+    env_file:
+      - .env
   socket_io:
     image: node
+    extra_hosts:
+      - "seanmaccann.com:91.225.166.156"
     user: "node"
     volumes:
       - ./socket:/home/node/app
